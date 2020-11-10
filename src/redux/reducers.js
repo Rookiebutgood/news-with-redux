@@ -6,6 +6,16 @@ const initialAuth = {
   isAuth: false
 }
 
+const initialNews = [
+  {
+    title: 'newsTitle',
+    date: 'date',
+    text: 'some interesting text',
+    isApproved: true
+  }
+]
+
+
 function auth(state = initialAuth, action) {
   switch (action.type) {
     case 'LOGIN':
@@ -20,4 +30,21 @@ function auth(state = initialAuth, action) {
   }
 }
 
-export default combineReducers({auth})
+function news(state = initialNews, action) {
+  switch (action.type) {
+    case 'ADD_NEWS':
+      return [
+        ...state,
+        {
+          title: action.payload.title,
+          date: action.payload.date,
+          text: action.payload.text,
+          isApproved : action.payload.isApproved
+        }
+      ]
+    default:
+      return state
+  }
+}
+
+export default combineReducers({auth, news})
