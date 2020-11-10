@@ -1,9 +1,17 @@
 import '../style/Home.scss'
+import { connect } from 'react-redux'
 
-export default function Home() {
+function Home({ username }) {
   return (
     <div className="homePage">
-      <h1 className="homePage__welcome">Привет, Гость</h1>
+      <h1 className="homePage__welcome">{`Привет, ${username ? username : 'Гость'}`}</h1>
     </div>
   )
 }
+const mapStateToProps = state => {
+  return {
+    username: state.auth.username
+  }
+}
+
+export default connect(mapStateToProps, null)(Home)

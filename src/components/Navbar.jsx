@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import '../style/Navbar.scss';
+import LoginForm from './LoginForm'
 
 export default function Navbar() {
   return (
@@ -19,6 +20,7 @@ export default function Navbar() {
         </ul>
       </nav>
       <button>Вход</button>
+      <LoginForm />
     </div>
 
   )
