@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { approveNews, deleteNews } from '../redux/actions';
+import '../style/NewsArticle.scss'
 
 function NewsArticle({ article, user, newsId, approve, remove }) {
   const isShow = article.isApproved || article.author === user.username || user.role === 'admin';

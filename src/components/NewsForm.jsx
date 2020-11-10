@@ -13,7 +13,7 @@ function NewsForm({ user, addNews }) {
       <input 
         type="submit"
         value="Отправить" 
-        onClick={()=>addNews(title, text, 'today', user.username)}
+        onClick={()=>addNews(title, text, user.username)}
       />
     </div>
   )
@@ -27,7 +27,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addNews: (title, text, date, author) => dispatch(addNews(title, text, date, author))
+    addNews: (title, text, author) => dispatch(addNews(title, text, author))
   }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(NewsForm)

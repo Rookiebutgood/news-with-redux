@@ -25,13 +25,13 @@ export function logout() {
   }
 }
 
-export function addNews(title, text, date, author) {
+export function addNews(title, text, author) {
   return {
     type: 'ADD_NEWS',
     payload: {
       title,
       text,
-      date,
+      date: `${new Date().toLocaleDateString()} - ${new Date().toLocaleTimeString()}`,
       author,
       isApproved: author === 'admin' ? true : false
     }
