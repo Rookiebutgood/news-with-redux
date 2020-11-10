@@ -14,8 +14,6 @@ function LoginForm({ isAuth, login }) {
   )
 }
 
-
-
 const mapDispatchToProps = dispatch => {
   return {
     login: (username, password) => dispatch(loginAction(username, password))

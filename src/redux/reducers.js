@@ -11,7 +11,7 @@ const initialNews = [
     title: 'newsTitle',
     date: 'date',
     text: 'some interesting text',
-    isApproved: true,
+    isApproved: false,
     author: 'bob'
   }
 ]
@@ -47,6 +47,7 @@ function news(state = initialNews, action) {
           title: action.payload.title,
           date: action.payload.date,
           text: action.payload.text,
+          author: action.payload.author,
           isApproved : action.payload.isApproved
         }
       ]

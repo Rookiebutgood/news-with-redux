@@ -1,12 +1,15 @@
 import { connect } from 'react-redux';
 
-function NewsArticle({ article, isAuth }) {
+function NewsArticle({ article, user }) {
+  const isShow = article.isApproved || article.author === user.username || user.role === 'admin';
   return (
-    <div className="newsArticle">
+    <>
+    { isShow &&
+      <div className="newsArticle">
       <h2 className="newsArticle__title">{article.title}</h2>
       <span className="newsArticle__date">{article.date}</span>
       <p className="newsArticle__text">{article.text}</p>
-      { isAuth &&
+      { user.role === 'admin' &&
         <div>
           {article.isApproved ? 
             <span>Одобрено</span>
@@ -17,12 +20,14 @@ function NewsArticle({ article, isAuth }) {
         </div>
       }
     </div>
+    }
+    </>
   )
 }
 
 const mapStateToProps = state => {
   return {
-    isAuth: state.auth.isAuth
+    user: state.auth
   }
 }
 

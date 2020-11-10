@@ -1,9 +1,9 @@
 import NewsArticle from './NewsArticle';
 import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import NewsForm from './NewsForm';
 
  function News({ articles }) {
-   console.log(articles)
    let [articlesList, setArticlesList] = useState([])
 
    useEffect(() => {
@@ -15,7 +15,7 @@ import { connect } from 'react-redux';
    }, [articles])
   return (
     <div>
-      News
+      <NewsForm />
       {articlesList}
     </div>
   )
