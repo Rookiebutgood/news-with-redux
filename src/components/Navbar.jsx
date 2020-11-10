@@ -3,8 +3,11 @@ import '../style/Navbar.scss';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
 import { logout }  from '../redux/actions'
+import { useState } from 'react';
 
 function Navbar({ isAuth, logout }) {
+  let [isShowPopup, setShowPopup] = useState(false);
+
   return (
     <div className="navbar">
       <nav>
@@ -24,9 +27,9 @@ function Navbar({ isAuth, logout }) {
       { isAuth ? 
         <button onClick={()=>logout()}>Выход</button>
         :
-        <button>Вход</button>
+        <button onClick={()=>setShowPopup(true)}>Вход</button>
       }
-      <LoginForm />
+      { isShowPopup && <LoginForm onExit={()=>setShowPopup(false)}/> }
     </div>
 
   )

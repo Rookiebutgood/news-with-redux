@@ -29,9 +29,9 @@ function auth(state = initialAuth, action) {
     case 'LOGOUT':
       return {
         ...state, 
-        username: action.payload.username, 
-        role: action.payload.role, 
-        isAuth: action.payload.isAuth
+        username: '', 
+        role: '', 
+        isAuth: false
       }
     default:
       return state

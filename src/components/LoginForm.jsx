@@ -1,17 +1,33 @@
 import { connect } from 'react-redux'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { loginAction }  from '../redux/actions'
+import Popup from './Popup';
 
-function LoginForm({ isAuth, login }) {
+function LoginForm({ user, login, onExit}) {
   let [username, setUsername] = useState('');
   let [password, setPassword] = useState('');
+  let [error, setError] = useState('');
+
+  useEffect((t) => {
+    if(user.isAuth) {
+      onExit();
+    }
+  }, [user, onExit])
+
   return(
-    <div className="loginForm">
-      <input type="text" onChange= {e=>setUsername(e.target.value)}/>
-      <input type="text" onChange= {e=>setPassword(e.target.value)}/>
+    <Popup title="Вход" error={error} exitHandler={onExit} >
+      {user.isAuth && 'text'}
+      <input type="text" onChange={e=>setUsername(e.target.value)}/>
+      <input type="password" onChange={e=>setPassword(e.target.value)}/>
       <input type="submit" value="Войти" onClick={()=>login(username, password)} />
-    </div>
+    </Popup>
   )
+}
+
+const mapStateToProps = state => {
+  return {
+    user: state.auth
+  }
 }
 
 const mapDispatchToProps = dispatch => {
@@ -20,4 +36,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm)
+export default connect(mapStateToProps, mapDispatchToProps)(LoginForm)

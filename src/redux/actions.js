@@ -21,12 +21,7 @@ export function loginAction(username, password) {
 
 export function logout() {
   return {
-    type: 'LOGOUT',
-    payload: {
-      username: '',
-      role: '',
-      isAuth: false
-    }
+    type: 'LOGOUT'
   }
 }
 
