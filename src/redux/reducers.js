@@ -11,7 +11,8 @@ const initialNews = [
     title: 'newsTitle',
     date: 'date',
     text: 'some interesting text',
-    isApproved: true
+    isApproved: true,
+    author: 'bob'
   }
 ]
 
@@ -19,6 +20,13 @@ const initialNews = [
 function auth(state = initialAuth, action) {
   switch (action.type) {
     case 'LOGIN':
+      return {
+        ...state, 
+        username: action.payload.username, 
+        role: action.payload.role, 
+        isAuth: action.payload.isAuth
+      }
+    case 'LOGOUT':
       return {
         ...state, 
         username: action.payload.username, 

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { useState } from 'react'
 import { loginAction }  from '../redux/actions'
 
-function LoginForm({ login }) {
+function LoginForm({ isAuth, login }) {
   let [username, setUsername] = useState('');
   let [password, setPassword] = useState('');
   return(
@@ -13,6 +13,8 @@ function LoginForm({ login }) {
     </div>
   )
 }
+
+
 
 const mapDispatchToProps = dispatch => {
   return {
