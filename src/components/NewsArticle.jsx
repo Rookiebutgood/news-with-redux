@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
+import { approveNews, deleteNews } from '../redux/actions';
 
-function NewsArticle({ article, user }) {
+function NewsArticle({ article, user, newsId, approve, remove }) {
   const isShow = article.isApproved || article.author === user.username || user.role === 'admin';
   return (
     <>
@@ -14,9 +15,9 @@ function NewsArticle({ article, user }) {
           {article.isApproved ? 
             <span>Одобрено</span>
             :
-            <button>Одобрить</button>
+            <button onClick={()=>approve(newsId)}>Одобрить</button>
           }
-          <button>Удалить</button>
+          <button onClick={()=>remove(newsId)}>Удалить</button>
         </div>
       }
     </div>
@@ -31,4 +32,11 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps, null)(NewsArticle)
+const mapDispatchToProps = dispatch => {
+  return {
+    approve: (id) => dispatch(approveNews(id)),
+    remove: (id) => dispatch(deleteNews(id)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewsArticle)

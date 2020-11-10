@@ -51,6 +51,16 @@ function news(state = initialNews, action) {
           isApproved : action.payload.isApproved
         }
       ]
+    case 'APPROVE_NEWS':
+      return state.map((el, i)=> {
+        if(i === action.payload) {
+          return {...el, isApproved: true}
+        } else {
+          return el;
+        }
+      })
+      case 'DELETE_NEWS':
+        return state.filter((el, i) => i !== action.payload)
     default:
       return state
   }

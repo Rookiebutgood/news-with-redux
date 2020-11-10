@@ -9,7 +9,7 @@ import NewsForm from './NewsForm';
    useEffect(() => {
      let tempArticles = []
      articles.forEach((el, i) => {
-      tempArticles.push(<NewsArticle article={el} key={i} />)
+      tempArticles.push(<NewsArticle article={el} key={i} newsId={i}/>)
      });
      setArticlesList(tempArticles)
    }, [articles])

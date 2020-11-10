@@ -37,3 +37,17 @@ export function addNews(title, text, date, author) {
     }
   }
 }
+
+export function approveNews(id) {
+  return {
+    type: 'APPROVE_NEWS',
+    payload: id
+  }
+}
+
+export function deleteNews(id) {
+  return {
+    type: 'DELETE_NEWS',
+    payload: id
+  }
+} 
