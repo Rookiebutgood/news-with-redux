@@ -1,0 +1,17 @@
+.navbar {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  background: pink;
+  padding: 0 10%;
+  box-sizing: border-box;
+  nav {
+    display: flex;
+    li {
+      display: inline-block;
+      margin: 0 20px;
+      font-size: 18px;
+    }
+  }
+}
