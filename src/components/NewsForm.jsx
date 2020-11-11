@@ -11,6 +11,7 @@ function NewsForm({ user, addNews }) {
   let [showForm, setShowForm] = useState(false);
   let [title, setTitle] = useState('');
   let [text, setText] = useState('');
+  let [error, setError] = useState('');
 
   return(
     <div className="newsForm">
@@ -32,12 +33,17 @@ function NewsForm({ user, addNews }) {
             placeholder="Текст новости"
             onChange= { e => setText(e.target.value) }
           />
+          { error && <span>{ error }</span> }
           <CustomButton
             label="Добавить"
             className="newsForm__submitButton"
             onClick={ () => {
-              addNews(title, text, user.username);
-              setShowForm(false);
+              if(title, text) {
+                addNews(title, text, user.username);
+                setShowForm(false);
+              } else {
+                setError('Чего то не хватает...')
+              }
             } }
           />
         </div>
