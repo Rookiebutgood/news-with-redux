@@ -1,4 +1,21 @@
 .newsArticle {
   width: 100%;
   margin: 20px 0;
+  &__title{
+    display: inline-block;
+    margin-bottom: 5px;
+  }
+  &__date {
+    margin-left: 10px;
+  }
+  &__text {
+    padding-left: 10px;
+  }
+  &__controls {
+    margin-top: 10px;
+  }
+  &__approveText, 
+  &__approveButton {
+    margin-right: 10px;
+  }
 }

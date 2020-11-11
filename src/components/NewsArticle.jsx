@@ -1,21 +1,32 @@
 import { connect } from 'react-redux';
 import { approveNews, deleteNews } from '../redux/actions';
+import CustomButton from './CustomButton';
+
 import '../style/NewsArticle.scss'
 
-function NewsArticle({ article, user, newsId, approve, remove }) {
+function NewsArticle({ article, newsId, user, approve, remove }) {
+  
   return (
       <div className="newsArticle">
-      <h2 className="newsArticle__title">{article.title}</h2>
-      <span className="newsArticle__date">{article.date}</span>
-      <p className="newsArticle__text">{article.text}</p>
+      <h2 className="newsArticle__title">{ article.title }</h2>
+      <span className="newsArticle__date">{ article.date }</span>
+      <p className="newsArticle__text">{ article.text }</p>
       { user.role === 'admin' &&
-        <div>
-          {article.isApproved ? 
-            <span>Одобрено</span>
+        <div className="newsArticle__controls">
+          { article.isApproved ? 
+            <span className="newsArticle__approveText">Одобрено</span>
             :
-            <button onClick={()=>approve(newsId)}>Одобрить</button>
+            <CustomButton
+              label="Одобрить"
+              className="newsArticle__approveButton"
+              onClick={ () => approve(newsId) }
+            />
           }
-          <button onClick={()=>remove(newsId)}>Удалить</button>
+          <CustomButton
+            label="Удалить"
+            className="newsArticle__removeButton"
+            onClick={ () => remove(newsId) }
+          />
         </div>
       }
     </div>

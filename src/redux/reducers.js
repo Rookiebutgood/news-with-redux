@@ -8,17 +8,24 @@ const initialAuth = {
 
 const initialNews = [
   {
-    title: 'newsTitle',
+    title: 'Эту новость написал админ',
     date: 'date',
-    text: 'some interesting text',
-    isApproved: false,
+    text: 'И ее не надо было одобрять',
+    isApproved: true,
+    author: 'admin'
+  },
+  {
+    title: 'Эту новость писал Боб',
+    date: 'date',
+    text: 'И она была одобрена',
+    isApproved: true,
     author: 'bob'
   },
   {
-    title: 'newsTitle',
+    title: 'И эту новость тоже писал Боб',
     date: 'date',
-    text: 'some interesting text',
-    isApproved: true,
+    text: 'Но она не была одобрена',
+    isApproved: false,
     author: 'bob'
   }
 ]
