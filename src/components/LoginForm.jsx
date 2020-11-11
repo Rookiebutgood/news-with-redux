@@ -38,13 +38,13 @@ function LoginForm({ user, onExit, login, logout}) {
           type="text"
           placeholder="Имя"
           className="loginForm__input"
-          onChange={ e => setUsername(e.target.value) }
+          onChange={ e => {setError(''); setPassword(e.target.value)} }
         />
         <input
           type="password"
           placeholder="Пароль"
           className="loginForm__input"
-          onChange={ e => setPassword(e.target.value) }
+          onChange={ e => {setError(''); setPassword(e.target.value)} }
         />
         { error && <span>{error}</span> }
         <CustomButton
