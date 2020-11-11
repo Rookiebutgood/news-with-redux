@@ -1,0 +1,17 @@
+.customButton {
+  width: 100px;
+  height: 30px;
+  font-size: 18px;
+  background: #fff;
+  outline: none;
+  border: 1px solid #000;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: .3s;
+  &:hover {
+    background: #d3d2d2;
+  }
+  &:active {
+    background: #fff;
+  }
+}

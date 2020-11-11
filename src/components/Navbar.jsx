@@ -4,6 +4,7 @@ import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
 import { logout }  from '../redux/actions'
 import { useState } from 'react';
+import CustomButton from './CustomButton'
 
 function Navbar({ isAuth, logout }) {
   let [isShowPopup, setShowPopup] = useState(false);
@@ -24,9 +25,17 @@ function Navbar({ isAuth, logout }) {
         </ul>
       </nav>
       { isAuth ? 
-        <button className="navbar__button" onClick={()=>logout()}>Выход</button>
+        <CustomButton
+          label="Выход"
+          className="navbar__button"
+          onClick={()=>logout()} 
+        />
         :
-        <button className="navbar__button" onClick={()=>setShowPopup(true)}>Вход</button>
+        <CustomButton
+          label="Вход"
+          className="navbar__button"
+          onClick={()=>setShowPopup(true)}
+        />
       }
       { isShowPopup && <LoginForm onExit={()=>setShowPopup(false)}/> }
     </div>

@@ -1,26 +1,46 @@
 import { connect } from 'react-redux'
 import { useEffect, useState } from 'react'
 import { loginAction }  from '../redux/actions'
-import Popup from './Popup';
+import CustomButton from './CustomButton'
+import '../style/LoginForm.scss'
 
 function LoginForm({ user, login, onExit}) {
   let [username, setUsername] = useState('');
   let [password, setPassword] = useState('');
   let [error, setError] = useState('');
 
-  useEffect((t) => {
+  useEffect(() => {
     if(user.isAuth) {
       onExit();
     }
   }, [user, onExit])
 
   return(
-    <Popup title="Вход" error={error} exitHandler={onExit} >
-      {user.isAuth && 'text'}
-      <input type="text" onChange={e=>setUsername(e.target.value)}/>
-      <input type="password" onChange={e=>setPassword(e.target.value)}/>
-      <input type="submit" value="Войти" onClick={()=>login(username, password)} />
-    </Popup>
+    <div className="loginForm">
+      <div className="loginForm__header">
+        <h3 className="loginForm__title">Вход</h3>
+        <button className="loginForm__exit" onClick={()=>onExit()}>Закрыть</button>
+      </div>
+      <div className="loginForm__content">
+        <input 
+          type="text"
+          placeholder="Имя"
+          className="loginForm__input"
+          onChange={e=>setUsername(e.target.value)}
+        />
+        <input
+          type="password"
+          placeholder="Пароль"
+          className="loginForm__input"
+          onChange={e=>setPassword(e.target.value)}
+        />
+        <CustomButton
+          label="Войти"
+          className="loginForm__button"
+          onClick={()=>login(username, password)}
+        />
+      </div>
+    </div>
   )
 }
 

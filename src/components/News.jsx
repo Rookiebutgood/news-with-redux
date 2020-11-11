@@ -5,7 +5,7 @@ import NewsForm from './NewsForm';
 import '../style/News.scss';
 
  function News({ articles, user }) {
-   let [articlesList, setArticlesList] = useState([])
+   let [articlesList, setArticlesList] = useState([]);
 
    useEffect(() => {
      let tempArticles = [];
@@ -17,7 +17,6 @@ import '../style/News.scss';
      });
      setArticlesList(tempArticles);
    }, [articles, user])
-
 
    function search(value) {
     let tempArticles = [];
@@ -32,9 +31,14 @@ import '../style/News.scss';
 
   return (
     <div className="news">
-      {user.isAuth && <NewsForm />}
-      <input type="text" onChange={e => search(e.target.value)} />
-      {articlesList}
+      <input
+        type="text"
+        placeholder="Поиск по новостям"
+        className="news__search"
+        onChange={e => search(e.target.value)}
+      />
+      { user.isAuth && <NewsForm /> }
+      { articlesList }
     </div>
   )
 }
