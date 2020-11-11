@@ -3,7 +3,8 @@ import { combineReducers } from 'redux'
 const initialAuth = {
   username: '',
   role: '',
-  isAuth: false
+  isAuth: false,
+  error: ''
 }
 
 const initialNews = [
@@ -38,14 +39,16 @@ function auth(state = initialAuth, action) {
         ...state, 
         username: action.payload.username, 
         role: action.payload.role, 
-        isAuth: action.payload.isAuth
+        isAuth: action.payload.isAuth,
+        error: action.payload.error
       }
     case 'LOGOUT':
       return {
         ...state, 
         username: '', 
         role: '', 
-        isAuth: false
+        isAuth: false,
+        error: ''
       }
     default:
       return state

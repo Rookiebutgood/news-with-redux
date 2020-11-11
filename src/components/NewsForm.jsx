@@ -1,7 +1,10 @@
 import { useState } from 'react';
+
 import { connect } from 'react-redux';
 import { addNews } from '../redux/actions';
+
 import CustomButton from './CustomButton';
+
 import '../style/NewsForm.scss';
 
 function NewsForm({ user, addNews }) {

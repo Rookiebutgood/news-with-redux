@@ -1,13 +1,9 @@
 import '../style/CustomButton.scss'
 
-function CustomButton({ label, width, height, className, onClick }) {
+function CustomButton({ label, className, onClick }) {
   return (
-    <button 
-      className={`customButton ${className}`}
-      style={{width: `${width}px`, height: `${height}px`,}}
-      onClick={onClick}
-    >
-      {label}
+    <button className={ `customButton ${className}` } onClick={ onClick }>
+      { label }
     </button>
   )
 }

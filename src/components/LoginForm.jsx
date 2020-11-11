@@ -1,10 +1,13 @@
-import { connect } from 'react-redux'
-import { useEffect, useState } from 'react'
-import { loginAction }  from '../redux/actions'
-import CustomButton from './CustomButton'
-import '../style/LoginForm.scss'
+import { useEffect, useState } from 'react';
 
-function LoginForm({ user, login, onExit}) {
+import { connect } from 'react-redux';
+import { loginAction, logout }  from '../redux/actions';
+
+import CustomButton from './CustomButton';
+
+import '../style/LoginForm.scss';
+
+function LoginForm({ user, onExit, login, logout}) {
   let [username, setUsername] = useState('');
   let [password, setPassword] = useState('');
   let [error, setError] = useState('');
@@ -13,31 +16,47 @@ function LoginForm({ user, login, onExit}) {
     if(user.isAuth) {
       onExit();
     }
+    if(user.error) {
+      setError(user.error);
+    }
   }, [user, onExit])
 
   return(
     <div className="loginForm">
       <div className="loginForm__header">
         <h3 className="loginForm__title">Вход</h3>
-        <button className="loginForm__exit" onClick={()=>onExit()}>Закрыть</button>
+        <button 
+          className="loginForm__exit" 
+          onClick={ () => { 
+            onExit();
+            logout(); //set auth.error to ''
+          } }
+        >Закрыть</button>
       </div>
       <div className="loginForm__content">
         <input 
           type="text"
           placeholder="Имя"
           className="loginForm__input"
-          onChange={e=>setUsername(e.target.value)}
+          onChange={ e => setUsername(e.target.value) }
         />
         <input
           type="password"
           placeholder="Пароль"
           className="loginForm__input"
-          onChange={e=>setPassword(e.target.value)}
+          onChange={ e => setPassword(e.target.value) }
         />
+        { error && <span>{error}</span> }
         <CustomButton
           label="Войти"
           className="loginForm__button"
-          onClick={()=>login(username, password)}
+          onClick={ () => {
+            if(username && password) {
+              login(username, password);
+            } else {
+              setError('Заполните все поля')
+            }
+          } }
         />
       </div>
     </div>
@@ -52,7 +71,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    login: (username, password) => dispatch(loginAction(username, password))
+    login: (username, password) => dispatch(loginAction(username, password)),
+    logout: () => dispatch(logout())
   }
 }
 

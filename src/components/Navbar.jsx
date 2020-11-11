@@ -1,10 +1,13 @@
-import { NavLink } from "react-router-dom";
-import '../style/Navbar.scss';
-import LoginForm from './LoginForm';
-import { connect } from 'react-redux';
-import { logout }  from '../redux/actions'
 import { useState } from 'react';
+import { NavLink } from "react-router-dom";
+
+import { connect } from 'react-redux';
+import { logout }  from '../redux/actions';
+
+import LoginForm from './LoginForm';
 import CustomButton from './CustomButton'
+
+import '../style/Navbar.scss';
 
 function Navbar({ isAuth, logout }) {
   let [isShowPopup, setShowPopup] = useState(false);
@@ -28,16 +31,16 @@ function Navbar({ isAuth, logout }) {
         <CustomButton
           label="Выход"
           className="navbar__button"
-          onClick={()=>logout()} 
+          onClick={ () => logout() } 
         />
         :
         <CustomButton
           label="Вход"
           className="navbar__button"
-          onClick={()=>setShowPopup(true)}
+          onClick={ () => setShowPopup(true) }
         />
       }
-      { isShowPopup && <LoginForm onExit={()=>setShowPopup(false)}/> }
+      { isShowPopup && <LoginForm onExit={ () => setShowPopup(false) } /> }
     </div>
 
   )

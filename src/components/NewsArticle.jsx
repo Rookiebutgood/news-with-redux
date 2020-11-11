@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { approveNews, deleteNews } from '../redux/actions';
+
 import CustomButton from './CustomButton';
 
 import '../style/NewsArticle.scss'
