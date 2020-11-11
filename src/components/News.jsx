@@ -4,16 +4,19 @@ import { connect } from 'react-redux';
 import NewsForm from './NewsForm';
 import '../style/News.scss';
 
- function News({ articles }) {
+ function News({ articles, user }) {
    let [articlesList, setArticlesList] = useState([])
 
    useEffect(() => {
      let tempArticles = [];
-     articles.forEach((el, i) => {
+     articles.filter((el) => {
+      return el.isApproved || el.author === user.username || user.role === 'admin';
+    })
+    .forEach((el, i) => {
       tempArticles.push(<NewsArticle article={el} key={i} newsId={i}/>)
      });
      setArticlesList(tempArticles);
-   }, [articles])
+   }, [articles, user])
 
 
    function search(value) {
@@ -29,8 +32,8 @@ import '../style/News.scss';
 
   return (
     <div className="news">
-      <NewsForm />
-      <input type="text" onChange={e=>search(e.target.value)} />
+      {user.isAuth && <NewsForm />}
+      <input type="text" onChange={e => search(e.target.value)} />
       {articlesList}
     </div>
   )
@@ -38,7 +41,8 @@ import '../style/News.scss';
 
 const mapStateToProps = state => {
   return {
-    articles: state.news
+    articles: state.news,
+    user: state.auth
   }
 }
 

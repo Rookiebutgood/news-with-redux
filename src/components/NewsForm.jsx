@@ -7,15 +7,15 @@ function NewsForm({ user, addNews }) {
   let [text, setText] = useState('');
 
   return(
-    <div className="newsForm">
-      <input type="text" onChange= {e=>setTitle(e.target.value)}/>
-      <textarea onChange= {e=>setText(e.target.value)}></textarea>
-      <input 
-        type="submit"
-        value="Отправить" 
-        onClick={()=>addNews(title, text, user.username)}
-      />
-    </div>
+      <div className="newsForm">
+        <input type="text" onChange= {e=>setTitle(e.target.value)}/>
+        <textarea onChange= {e=>setText(e.target.value)}></textarea>
+        <input 
+          type="submit"
+          value="Отправить" 
+          onClick={()=>addNews(title, text, user.username)}
+        />
+      </div>
   )
 }
 

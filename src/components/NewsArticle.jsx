@@ -3,10 +3,7 @@ import { approveNews, deleteNews } from '../redux/actions';
 import '../style/NewsArticle.scss'
 
 function NewsArticle({ article, user, newsId, approve, remove }) {
-  const isShow = article.isApproved || article.author === user.username || user.role === 'admin';
   return (
-    <>
-    { isShow &&
       <div className="newsArticle">
       <h2 className="newsArticle__title">{article.title}</h2>
       <span className="newsArticle__date">{article.date}</span>
@@ -22,8 +19,7 @@ function NewsArticle({ article, user, newsId, approve, remove }) {
         </div>
       }
     </div>
-    }
-    </>
+
   )
 }
 

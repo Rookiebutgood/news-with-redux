@@ -11,7 +11,7 @@ const initialNews = [
     title: 'newsTitle',
     date: 'date',
     text: 'some interesting text',
-    isApproved: true,
+    isApproved: false,
     author: 'bob'
   },
   {
